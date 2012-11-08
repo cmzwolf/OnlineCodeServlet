@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+
+	<display-name>Online Code Application</display-name>
+
+	<servlet>
+		<servlet-name>OnlineCodeFrontal</servlet-name>
+		<servlet-class>net.ivoa.pdr.OnlineCodeFrontal</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>OnlineCodeFrontal</servlet-name>
+		<url-pattern>/OnlineCode</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getJobInfo</servlet-name>
+		<servlet-class>net.ivoa.pdr.getJobInfo</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>getJobInfo</servlet-name>
+		<url-pattern>/getJobInfo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>JobSummary</servlet-name>
+		<servlet-class>net.ivoa.pdr.JobSummary</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JobSummary</servlet-name>
+		<url-pattern>/JobSummary</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>StopJob</servlet-name>
+		<servlet-class>net.ivoa.pdr.StopJob</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>StopJob</servlet-name>
+		<url-pattern>/StopJob</url-pattern>
+	</servlet-mapping>
+
+</web-app>

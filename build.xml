@@ -1,0 +1,48 @@
+<project name="Web" default="war" basedir=".">
+
+	<description>
+	Projet Web
+   </description>
+
+
+	<xmlproperty file="./webContent/WEB-INF/web.xml" collapseattributes="true" />
+	<property file="build.properties" />
+
+	<path id="libTests">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+
+
+	<target name="compil" description="compile les sources">
+		<echo>Repertoire de compilation pour la servlet: ${build}</echo>
+
+		<echo>debut compil web</echo>
+		<ant dir="../OnlineCodeCommons" taskname="jar" inheritall="false" />
+		<echo>Fin commons</echo>
+		<ant dir="../OnlineCodeDAO" taskname="jar" inheritall="false" />
+		<echo>Fin DAO</echo>
+		<ant dir="../OnlineCodeBusiness" taskname="jar" inheritall="false" />
+		<echo>Fin Business</echo>
+		<javac srcdir="WEB-INF/${src}" destdir="${build}" debug="true" source="1.6" target="1.6" verbose="true" failonerror="false">
+			<classpath>
+				<path refid="libTests" />
+			</classpath>
+		</javac>
+		<echo>Fin compil web</echo>
+	</target>
+
+	<target name="war" depends="compil">
+		<echo>debut war</echo>
+
+		<war destfile="${war.name}" webxml="WEB-INF/web.xml">
+			<lib dir="${lib}"/>
+			<classes dir="${build}" />
+		</war>
+		
+		<echo>fin war</echo>
+	</target>
+
+</project>

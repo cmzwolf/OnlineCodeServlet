@@ -14,7 +14,17 @@
 		<servlet-name>OnlineCodeFrontal</servlet-name>
 		<url-pattern>/OnlineCode</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TavernaCodeFrontal</servlet-name>
+		<servlet-class>net.ivoa.pdr.TavernaCodeFrontal</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>TavernaCodeFrontal</servlet-name>
+		<url-pattern>/TavernaCodeFrontal</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>getJobInfo</servlet-name>
 		<servlet-class>net.ivoa.pdr.getJobInfo</servlet-class>
@@ -23,6 +33,16 @@
 	<servlet-mapping>
 		<servlet-name>getJobInfo</servlet-name>
 		<url-pattern>/getJobInfo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TavernaJobInfo</servlet-name>
+		<servlet-class>net.ivoa.pdr.TavernaJobInfo</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TavernaJobInfo</servlet-name>
+		<url-pattern>/TavernaJobInfo</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

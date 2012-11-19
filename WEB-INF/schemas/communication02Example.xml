@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JobDetail xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/zwolf/Work/workspaceTestServlet/OnlineCodeServlet/WEB-INF/schemas/PDL-TavernaCommunication02.xsd">
+    <JobId>1324</JobId>
+    <JobPhase>Finished</JobPhase>
+    <DemandDate>20/11/2012 09h 52m 45s</DemandDate>
+    <ProcessingDate>20/11/2012 09h 54m 45s</ProcessingDate>
+    <FinishingDate>20/11/2012 09h 58m 45s</FinishingDate>
+    <Inputs>
+        <param>
+            <Name>Temperature</Name>
+            <Value>10000</Value>
+        </param>
+        <param>
+            <Name>Density</Name>
+            <Value>10000</Value>
+        </param>
+    </Inputs>
+    <Outputs>
+        <param>
+            <Name>Volume</Name>
+            <Value>15</Value>
+        </param>
+        <param>
+            <Name>Hentalpy</Name>
+            <Value>0.3</Value>
+        </param>
+    </Outputs>
+    <Errors>
+        <ErrorDetail>PDL-Error : the product Temperature Density must be less than 100000</ErrorDetail>
+        <ErrorDetail>PDL-Error : the Temperaturev must be less than 800</ErrorDetail>
+    </Errors>
+</JobDetail>

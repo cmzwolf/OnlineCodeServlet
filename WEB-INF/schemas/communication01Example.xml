@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JobsList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/zwolf/Work/workspaceTestServlet/OnlineCodeServlet/WEB-INF/schemas/PDL-TavernaCommunication01.xsd">
+    <ServiceName>http://www.pdl-calc.obspm.fr/montage/</ServiceName>
+    <List>
+        <JobId>1245</JobId>
+        <UserId>22</UserId>
+    </List>
+    <List>
+        <JobId>1284</JobId>
+        <UserId>22</UserId>
+    </List>
+    <List>
+        <JobId>1324</JobId>
+        <UserId>22</UserId>
+    </List>
+</JobsList>

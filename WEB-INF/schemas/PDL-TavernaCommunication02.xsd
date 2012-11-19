@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="JobDetail">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="JobId" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="JobPhase" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="DemandDate" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="ProcessingDate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="FinishingDate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Inputs" type="Inputs" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Outputs" type="Outputs" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="Errors" type="Errors" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Inputs">
+        <xs:sequence>
+            <xs:element name="param" type="Parameter" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Outputs">
+        <xs:sequence>
+            <xs:element name="param" type="Parameter" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Errors">
+        <xs:sequence>
+            <xs:element name="ErrorDetail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Parameter">
+        <xs:sequence>
+            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="Value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

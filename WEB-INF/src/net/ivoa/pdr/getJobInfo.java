@@ -64,7 +64,7 @@ public class getJobInfo extends HttpServlet {
 		
 		String servletContainer = GlobalTechConfigBusiness.getInstance().getServletContainer();
 		
-		if (null == demandDateforUser || demandDateforUser.equalsIgnoreCase("")) {
+		if (null == demandDateforUser || demandDateforUser.equalsIgnoreCase("") || userId != userIdForUser) {
 			// User never asked that job!
 			serverResponse += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">";
 			serverResponse += "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n";

@@ -68,8 +68,8 @@ public class TavernaJobInfo extends HttpServlet {
 
 		String servletContainer = GlobalTechConfigBusiness.getInstance()
 				.getServletContainer();
-
-		if (null == demandDateforUser || demandDateforUser.equalsIgnoreCase("")) {
+		
+		if (null == demandDateforUser || demandDateforUser.equalsIgnoreCase("") || userId != userIdForUser) {
 			// User never asked that job!
 			serverResponse = "error: current user and job owner do not correspond";
 
@@ -78,7 +78,8 @@ public class TavernaJobInfo extends HttpServlet {
 
 			JobDetail jobDetail = new JobDetail();
 			jobDetail.setJobId(jobId.toString());
-			jobDetail.setDemandDate(job.getDemandDate());
+		
+			jobDetail.setDemandDate(demandDateforUser);
 			jobDetail.setJobPhase(JobBusiness.getInstance()
 					.computeJobPhase(job));
 			jobDetail.setFinishingDate(job.getFinishingDate());
@@ -88,31 +89,37 @@ public class TavernaJobInfo extends HttpServlet {
 			Errors errors = new Errors();
 
 			// Building the inputs
-			for (Entry<String, String> param : job.getJobConfiguration()
-					.entrySet()) {
-				Parameter tempInput = new Parameter();
-				tempInput.setName(param.getKey());
-				tempInput.setValue(param.getValue());
-				input.getParam().add(tempInput);
+			if (null != job.getJobConfiguration() && job.getJobConfiguration().size()>0) {
+				for (Entry<String, String> param : job.getJobConfiguration()
+						.entrySet()) {
+					Parameter tempInput = new Parameter();
+					tempInput.setName(param.getKey());
+					tempInput.setValue(param.getValue());
+					input.getParam().add(tempInput);
+				}
+				jobDetail.setInputs(input);
 			}
 
 			// Building the outputs
-			int fileNumber = 1;
-			for (String resultValue : job.getJobResults()) {
-				Parameter tempOutput = new Parameter();
-				tempOutput.setName("file" + fileNumber);
-				tempOutput.setValue(resultValue);
-				outputs.getParam().add(tempOutput);
+			if (null != job.getJobResults() && job.getJobResults().size()>0) {
+				int fileNumber = 1;
+				for (String resultValue : job.getJobResults()) {
+					Parameter tempOutput = new Parameter();
+					tempOutput.setName("file" + fileNumber);
+					tempOutput.setValue(resultValue);
+					outputs.getParam().add(tempOutput);
+				}
+				jobDetail.setOutputs(outputs);
 			}
 
 			// Building the errors
-			for (String currentError : job.getJobErrors()) {
-				errors.getErrorDetail().add(currentError);
+			if (null != job.getJobErrors() && job.getJobErrors().size()>0) {
+				for (String currentError : job.getJobErrors()) {	
+					errors.getErrorDetail().add(currentError);
+				}
+				jobDetail.setErrors(errors);
 			}
 
-			jobDetail.setInputs(input);
-			jobDetail.setOutputs(outputs);
-			jobDetail.setErrors(errors);
 
 			// Preparing the JAXB technical files for the unmarshall operation
 			JAXBContext jaxbContext;

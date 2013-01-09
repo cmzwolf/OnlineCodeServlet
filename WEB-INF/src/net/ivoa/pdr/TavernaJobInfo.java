@@ -68,8 +68,9 @@ public class TavernaJobInfo extends HttpServlet {
 
 		String servletContainer = GlobalTechConfigBusiness.getInstance()
 				.getServletContainer();
-		
-		if (null == demandDateforUser || demandDateforUser.equalsIgnoreCase("") || userId != userIdForUser) {
+
+		if (null == demandDateforUser || demandDateforUser.equalsIgnoreCase("")
+				|| userId != userIdForUser) {
 			// User never asked that job!
 			serverResponse = "error: current user and job owner do not correspond";
 
@@ -78,7 +79,7 @@ public class TavernaJobInfo extends HttpServlet {
 
 			JobDetail jobDetail = new JobDetail();
 			jobDetail.setJobId(jobId.toString());
-		
+
 			jobDetail.setDemandDate(demandDateforUser);
 			jobDetail.setJobPhase(JobBusiness.getInstance()
 					.computeJobPhase(job));
@@ -89,7 +90,8 @@ public class TavernaJobInfo extends HttpServlet {
 			Errors errors = new Errors();
 
 			// Building the inputs
-			if (null != job.getJobConfiguration() && job.getJobConfiguration().size()>0) {
+			if (null != job.getJobConfiguration()
+					&& job.getJobConfiguration().size() > 0) {
 				for (Entry<String, String> param : job.getJobConfiguration()
 						.entrySet()) {
 					Parameter tempInput = new Parameter();
@@ -101,25 +103,37 @@ public class TavernaJobInfo extends HttpServlet {
 			}
 
 			// Building the outputs
-			if (null != job.getJobResults() && job.getJobResults().size()>0) {
+			if (null != job.getJobResults() && job.getJobResults().size() > 0) {
 				int fileNumber = 1;
 				for (String resultValue : job.getJobResults()) {
 					Parameter tempOutput = new Parameter();
-					tempOutput.setName("file" + fileNumber);
-					tempOutput.setValue(resultValue);
+
+					if (resultValue.substring(0, 6).equalsIgnoreCase("Value.")) {
+						Integer totalLengtOfFileExtension = resultValue
+								.length();
+						String[] resultDecomposition = resultValue.substring(6,
+								totalLengtOfFileExtension).split("=");
+						String parameterName = resultDecomposition[0];
+						String parameterValue = resultDecomposition[1];
+						tempOutput.setName(parameterName);
+						tempOutput.setValue(parameterValue);
+					} else {
+						tempOutput.setName("file" + fileNumber);
+						tempOutput.setValue(resultValue);
+						fileNumber++;
+					}
 					outputs.getParam().add(tempOutput);
 				}
 				jobDetail.setOutputs(outputs);
 			}
 
 			// Building the errors
-			if (null != job.getJobErrors() && job.getJobErrors().size()>0) {
-				for (String currentError : job.getJobErrors()) {	
+			if (null != job.getJobErrors() && job.getJobErrors().size() > 0) {
+				for (String currentError : job.getJobErrors()) {
 					errors.getErrorDetail().add(currentError);
 				}
 				jobDetail.setErrors(errors);
 			}
-
 
 			// Preparing the JAXB technical files for the unmarshall operation
 			JAXBContext jaxbContext;

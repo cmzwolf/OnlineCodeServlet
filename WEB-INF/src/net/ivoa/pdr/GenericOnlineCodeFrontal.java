@@ -1,6 +1,7 @@
 package net.ivoa.pdr;
 
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.security.InvalidParameterException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,19 +27,17 @@ import visitors.GeneralParameterVisitor;
 import CommonsObjects.GeneralParameter;
 
 /**
- * @author Carlo Maria Zwolf
- * Observatoire de Paris
- * LERMA
+ * @author Carlo Maria Zwolf Observatoire de Paris LERMA
  */
 
 public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 
-	private static final String SEPARATOR = "/";
+	private static final String SEPARATOR = "|";
 
 	private String errorMessage = "";
 
-	protected String serverResponse="";
-	
+	protected String serverResponse = "";
+
 	protected Integer userId;
 
 	private Map<String, GeneralParameter> defaultRawParameters;
@@ -50,6 +49,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse rep) {
 		try {
+
 			// Getting the mail of the user
 			this.userMail = req.getParameter("mail");
 			this.userId = UserBusiness.getInstance().getIdUserByMail(
@@ -71,9 +71,9 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 			this.notifyFreshlyCreatedJobs();
 
 			rep.setContentType("text/html");
-			
+
 			this.serverResponse = buildServerResponse();
-			
+
 			PrintWriter page;
 			page = rep.getWriter();
 			page.println(this.serverResponse);
@@ -207,16 +207,26 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 
 	protected void getRawDataFromUserRequest(HttpServletRequest req) {
 		this.userProvidedRawData = new HashMap<String, GeneralParameter>();
+
 		for (Map.Entry<String, GeneralParameter> entry : this.defaultRawParameters
 				.entrySet()) {
 			try {
-
 				String submittedParamValue = req.getParameter(entry.getKey());
 
 				if (null == submittedParamValue
 						|| "".equalsIgnoreCase(submittedParamValue)) {
+					System.out
+							.println("into the exeption due to invalid submittedValue");
 					throw new InvalidParameterException();
 				}
+
+				System.out
+						.println("Creating GeneralParameter with characteristics");
+				System.out.println("ParamName =" + entry.getKey());
+				System.out.println("ParamValue = " + submittedParamValue);
+				System.out.println("ParamType =" + entry.getValue().getType());
+				System.out.println("ParamDescription ="
+						+ entry.getValue().getDescription());
 
 				GeneralParameter userProvidedRawParam = new GeneralParameter(
 						submittedParamValue, entry.getValue().getType(), entry
@@ -226,6 +236,8 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 				this.userProvidedRawData.put(entry.getKey(),
 						userProvidedRawParam);
 			} catch (Exception e) {
+				System.out
+						.println("into the exception for defining a given parameter");
 				this.userProvidedRawData.put(entry.getKey(), entry.getValue());
 			}
 		}

@@ -104,24 +104,14 @@ public class TavernaJobInfo extends HttpServlet {
 
 			// Building the outputs
 			if (null != job.getJobResults() && job.getJobResults().size() > 0) {
-				int fileNumber = 1;
-				for (String resultValue : job.getJobResults()) {
+				for (Entry<String, String> result : job.getJobResults()
+						.entrySet()) {
+
 					Parameter tempOutput = new Parameter();
 
-					if (resultValue.substring(0, 6).equalsIgnoreCase("Value.")) {
-						Integer totalLengtOfFileExtension = resultValue
-								.length();
-						String[] resultDecomposition = resultValue.substring(6,
-								totalLengtOfFileExtension).split("=");
-						String parameterName = resultDecomposition[0];
-						String parameterValue = resultDecomposition[1];
-						tempOutput.setName(parameterName);
-						tempOutput.setValue(parameterValue);
-					} else {
-						tempOutput.setName("file" + fileNumber);
-						tempOutput.setValue(resultValue);
-						fileNumber++;
-					}
+					tempOutput.setName(result.getKey());
+					tempOutput.setValue(result.getValue());
+
 					outputs.getParam().add(tempOutput);
 				}
 				jobDetail.setOutputs(outputs);

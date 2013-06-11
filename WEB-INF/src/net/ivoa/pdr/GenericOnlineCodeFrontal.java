@@ -1,7 +1,6 @@
 package net.ivoa.pdr;
 
 import java.io.PrintWriter;
-import java.net.URLDecoder;
 import java.security.InvalidParameterException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,14 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ivoa.pdr.business.JobBusiness;
-import net.ivoa.pdr.business.MailSenderBusiness;
 import net.ivoa.pdr.business.ParametersBusiness;
 import net.ivoa.pdr.business.PurgeBusiness;
 import net.ivoa.pdr.business.RawParameterBusiness;
 import net.ivoa.pdr.business.ServiceBusiness;
 import net.ivoa.pdr.business.UserBusiness;
-import net.ivoa.pdr.commons.JobBean;
 import net.ivoa.pdr.commons.ParamConfiguration;
 import net.ivoa.pdr.utils.PDRMap;
 import visitors.GeneralParameterVisitor;
@@ -32,7 +28,7 @@ import CommonsObjects.GeneralParameter;
 
 public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 
-	private static final String SEPARATOR = "|";
+	private static final String SEPARATOR = "%";
 
 	private String errorMessage = "";
 
@@ -49,7 +45,10 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse rep) {
 		try {
-
+			
+			
+			System.out.println("*********"+req.getQueryString());
+			
 			// Getting the mail of the user
 			this.userMail = req.getParameter("mail");
 			this.userId = UserBusiness.getInstance().getIdUserByMail(

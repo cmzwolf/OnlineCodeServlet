@@ -1,4 +1,4 @@
-package net.ivoa.pdr;
+package net.ivoa.pdl;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
@@ -12,15 +12,15 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import net.ivoa.pdl.tavernaCommunication02.Errors;
+import net.ivoa.pdl.tavernaCommunication02.Inputs;
+import net.ivoa.pdl.tavernaCommunication02.JobDetail;
+import net.ivoa.pdl.tavernaCommunication02.Outputs;
+import net.ivoa.pdl.tavernaCommunication02.Parameter;
 import net.ivoa.pdr.business.GlobalTechConfigBusiness;
 import net.ivoa.pdr.business.JobBusiness;
 import net.ivoa.pdr.business.UserBusiness;
 import net.ivoa.pdr.commons.JobBean;
-import net.ivoa.pdr.tavernaCommunication02.Errors;
-import net.ivoa.pdr.tavernaCommunication02.Inputs;
-import net.ivoa.pdr.tavernaCommunication02.JobDetail;
-import net.ivoa.pdr.tavernaCommunication02.Outputs;
-import net.ivoa.pdr.tavernaCommunication02.Parameter;
 
 public class TavernaJobInfo extends HttpServlet {
 
@@ -129,7 +129,7 @@ public class TavernaJobInfo extends HttpServlet {
 			JAXBContext jaxbContext;
 			try {
 				jaxbContext = JAXBContext
-						.newInstance("net.ivoa.pdr.tavernaCommunication02");
+						.newInstance("net.ivoa.pdl.tavernaCommunication02");
 
 				Marshaller marshaller = jaxbContext.createMarshaller();
 				marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,

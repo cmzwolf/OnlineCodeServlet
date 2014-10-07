@@ -6,7 +6,7 @@
 //
 
 
-package net.ivoa.pdr.tavernaCommunication02;
+package net.ivoa.pdl.tavernaCommunication02;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

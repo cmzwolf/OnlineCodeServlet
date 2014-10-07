@@ -1,4 +1,4 @@
-package net.ivoa.pdr;
+package net.ivoa.pdl;
 
 import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
@@ -7,9 +7,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
+import net.ivoa.pdl.tavernaCommunication01.JobInstances;
+import net.ivoa.pdl.tavernaCommunication01.JobsList;
 import net.ivoa.pdr.business.GlobalTechConfigBusiness;
-import net.ivoa.pdr.tavernaCommunication01.JobInstances;
-import net.ivoa.pdr.tavernaCommunication01.JobsList;
 
 public class TavernaCodeFrontal extends GenericOnlineCodeFrontal {
 
@@ -31,19 +31,16 @@ public class TavernaCodeFrontal extends GenericOnlineCodeFrontal {
 		JobsList communicationCore = new JobsList();
 		communicationCore.setServiceName(serviceId);
 
-		// for every job that has just been created by the current request
-		for (Integer idJob : this.freshlyDemandedJobs) {
-			JobInstances temp = new JobInstances();
-			temp.setJobId(idJob.toString());
-			temp.setUserId(this.userId.toString());
-			communicationCore.getList().add(temp);
-		}
+		JobInstances temp = new JobInstances();
+		temp.setJobId(this.CreatedJobId.toString());
+		temp.setUserId(this.userId.toString());
+		communicationCore.getList().add(temp);
 
 		// Preparing the JAXB technical files for the unmarshall operation
 		JAXBContext jaxbContext;
 		try {
 			jaxbContext = JAXBContext
-					.newInstance("net.ivoa.pdr.tavernaCommunication01");
+					.newInstance("net.ivoa.pdl.tavernaCommunication01");
 
 			Marshaller marshaller = jaxbContext.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,

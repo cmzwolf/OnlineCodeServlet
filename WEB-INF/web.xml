@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>OnlineCodeFrontal</servlet-name>
-		<servlet-class>net.ivoa.pdr.OnlineCodeFrontal</servlet-class>
+		<servlet-class>net.ivoa.pdl.OnlineCodeFrontal</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -17,7 +17,7 @@
 	
 	<servlet>
 		<servlet-name>TavernaCodeFrontal</servlet-name>
-		<servlet-class>net.ivoa.pdr.TavernaCodeFrontal</servlet-class>
+		<servlet-class>net.ivoa.pdl.TavernaCodeFrontal</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -27,7 +27,7 @@
 	
 	<servlet>
 		<servlet-name>getJobInfo</servlet-name>
-		<servlet-class>net.ivoa.pdr.getJobInfo</servlet-class>
+		<servlet-class>net.ivoa.pdl.getJobInfo</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -37,7 +37,7 @@
 	
 	<servlet>
 		<servlet-name>TavernaJobInfo</servlet-name>
-		<servlet-class>net.ivoa.pdr.TavernaJobInfo</servlet-class>
+		<servlet-class>net.ivoa.pdl.TavernaJobInfo</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -47,7 +47,7 @@
 	
 	<servlet>
 		<servlet-name>JobSummary</servlet-name>
-		<servlet-class>net.ivoa.pdr.JobSummary</servlet-class>
+		<servlet-class>net.ivoa.pdl.JobSummary</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -57,7 +57,7 @@
 
 	<servlet>
 		<servlet-name>StopJob</servlet-name>
-		<servlet-class>net.ivoa.pdr.StopJob</servlet-class>
+		<servlet-class>net.ivoa.pdl.StopJob</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

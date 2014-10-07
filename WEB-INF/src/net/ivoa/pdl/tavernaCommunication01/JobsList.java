@@ -6,7 +6,7 @@
 //
 
 
-package net.ivoa.pdr.tavernaCommunication01;
+package net.ivoa.pdl.tavernaCommunication01;
 
 import java.util.ArrayList;
 import java.util.List;

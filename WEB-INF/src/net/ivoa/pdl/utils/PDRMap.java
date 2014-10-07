@@ -1,4 +1,4 @@
-package net.ivoa.pdr.utils;
+package net.ivoa.pdl.utils;
 
 import java.util.List;
 

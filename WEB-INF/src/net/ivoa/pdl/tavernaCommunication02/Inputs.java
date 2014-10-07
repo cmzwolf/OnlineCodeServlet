@@ -6,7 +6,7 @@
 //
 
 
-package net.ivoa.pdr.tavernaCommunication02;
+package net.ivoa.pdl.tavernaCommunication02;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Outputs complex type.
+ * <p>Java class for Inputs complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Outputs">
+ * &lt;complexType name="Inputs">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -35,10 +35,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Outputs", propOrder = {
+@XmlType(name = "Inputs", propOrder = {
     "param"
 })
-public class Outputs {
+public class Inputs {
 
     protected List<Parameter> param;
 

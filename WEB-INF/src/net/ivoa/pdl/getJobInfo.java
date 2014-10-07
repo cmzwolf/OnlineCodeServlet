@@ -1,4 +1,4 @@
-package net.ivoa.pdr;
+package net.ivoa.pdl;
 
 import java.io.PrintWriter;
 import java.sql.SQLException;

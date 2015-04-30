@@ -41,13 +41,17 @@ public class OnlineCodeFrontal extends GenericOnlineCodeFrontal {
 
 				message = "Hello,\n\n";
 
-				message += "Please visit the link "
+				/*message += "Please visit the link "
 						+ GlobalTechConfigBusiness.getInstance()
 								.getServletContainer() + "JobSummary?mail="
 						+ userMail + "&userIdForUser=" + userId
-						+ " for job administration.\n\n";
+						+ " for job administration.\n\n";*/
+				
+				message += "Please visit the following link for job administration:\n"
+						+ GlobalTechConfigBusiness.getInstance()
+						.getGWTContainer() + "?userId="+userId+"&mail="+userMail;
 
-				message += "Computation demands have been just been recorded for the following jobs:\n";
+				message += "\n Computation demands have been just been recorded for the following jobs:\n";
 
 				JobBean job = JobBusiness.getInstance().getJobBeanFromIdJob(
 						this.CreatedJobId);

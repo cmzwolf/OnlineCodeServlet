@@ -137,6 +137,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 		// trying to get the optional parameter gridId
 		try {
 			this.gridID = req.getParameter("gridID");
+			this.gridID.length();
 		} catch (Exception e) {
 			this.gridID = "None";
 		}
@@ -144,6 +145,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 		// trying to get the optional parameter jobNickName
 		try {
 			this.jobNickName = req.getParameter("jobNickName");
+			this.jobNickName.length();
 		} catch (Exception e) {
 			this.jobNickName = "None";
 		}
@@ -151,6 +153,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 		// trying to get the optional parameter MailRequested
 		try {
 			String mailFlag = req.getParameter("MailRequested");
+			mailFlag.length();
 			if (mailFlag.equalsIgnoreCase("false")) {
 				this.MailRequested = false;
 			} else {
@@ -189,7 +192,11 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 				try {
 					// try to get the value
 					String parameterValue = req.getParameter(parameterName);
-
+					
+					//We look if the parameter value is not null. It it is the case it throws a NullPointerException
+					//which is handled below.
+					parameterValue.length();
+					
 					try {
 						// validating the type for parameters
 						GeneralParameter gp = new GeneralParameter(
@@ -201,6 +208,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 						this.userProvidedData.put(parameterName, gp);
 
 					} catch (Exception e) {
+						e.printStackTrace();
 						// if the general parameter can not be instantiated, we
 						// add
 						// this error to the list of errors
@@ -214,6 +222,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 					}
 
 				} catch (Exception e) {
+					e.printStackTrace();
 					// if the parameter is required
 					if (currentParam.getDependency().equals(
 							ParameterDependency.REQUIRED)) {
@@ -229,6 +238,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 			performGroupsVerfication(service, currentMapper);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			this.errorList
 					.add(new ErrorDetail(
 							"PDLdescription",

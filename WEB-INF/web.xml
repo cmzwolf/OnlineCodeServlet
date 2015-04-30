@@ -26,6 +26,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>JsonCodeFrontal</servlet-name>
+		<servlet-class>net.ivoa.pdl.JsonCodeFrontal</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JsonCodeFrontal</servlet-name>
+		<url-pattern>/JsonCodeFrontal</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>getJobInfo</servlet-name>
 		<servlet-class>net.ivoa.pdl.getJobInfo</servlet-class>
 	</servlet>

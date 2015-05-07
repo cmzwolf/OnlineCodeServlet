@@ -31,6 +31,7 @@ public class JsonCodeFrontal extends GenericOnlineCodeFrontal {
 		// If there are errors
 		if (null != this.errorList || this.errorList.size() > 0) {
 			// we notify to user the errors
+			JSONObject errorsContainer = new JSONObject();
 			JSONArray jsonErrorList = new JSONArray();
 
 			for (ErrorDetail error : this.errorList) {
@@ -44,7 +45,8 @@ public class JsonCodeFrontal extends GenericOnlineCodeFrontal {
 				obj.put("involvedParameter(s)", list);
 				jsonErrorList.add(obj);
 			}
-			this.JsonResponse = jsonErrorList.toJSONString();
+			errorsContainer.put("errors", jsonErrorList);
+			this.JsonResponse = errorsContainer.toString();
 		}
 		// if there are no errors
 		if (null == this.errorList || this.errorList.size() <= 0) {

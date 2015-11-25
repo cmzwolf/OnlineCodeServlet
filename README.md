@@ -20,6 +20,7 @@ This generic server handle the job submission, the job queuing, the monitoring o
 To adapt this generic server to a particular service, one must only provide a PDL description of the service to deploy. 
 
 
+
 The PDL server is composed of 7 software elements. Each element corresponds to a project:
 
 -OnlineCodeLibs —> Contains the set of Libraries needed by all the other components
@@ -35,6 +36,7 @@ The PDL server is composed of 7 software elements. Each element corresponds to a
 -OnlineCodeDaemon —> The server-side job management daemon
 
 -JobMonitor —> A rich Web interface (based on Google Web Toolkit) for job monitoring (this interface works only with the version contained into the “version2” branch of the PDL server). 
+
 
 
 THE PDL CLIENT

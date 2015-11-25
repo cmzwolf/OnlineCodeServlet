@@ -5,8 +5,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +54,7 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 	protected Integer userId;
 	protected Integer CreatedJobId;
 
-	private String gridID;
+	protected String gridID;
 	private String jobNickName;
 	protected Boolean MailRequested;
 
@@ -123,9 +126,20 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 	private Map<String, String> convertMapOfGPintoString(
 			Map<String, GeneralParameter> mapToConvert) {
 		Map<String, String> convertedMap = new HashMap<String, String>();
+		
+		
+		
 		for (Map.Entry<String, GeneralParameter> entry : mapToConvert
 				.entrySet()) {
-			convertedMap.put(entry.getKey(), entry.getValue().getValue());
+			String parameterName = entry.getKey();
+			String parameterValue;
+			try {
+				parameterValue = URLEncoder.encode(entry.getValue().getValue(), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				parameterValue = entry.getValue().getValue();
+			}
+			convertedMap.put(parameterName, parameterValue);
 		}
 		return convertedMap;
 	}
@@ -203,7 +217,8 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 								parameterValue,
 								currentParam.getParameterType(),
 								currentParam.getSkosConcept(), visitor);
-
+						
+						
 						currentMapper.setSingleValueInMap(parameterName, gp);
 						this.userProvidedData.put(parameterName, gp);
 
@@ -252,7 +267,6 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 			throws MalformedURLException, IOException, SQLException,
 			ClassNotFoundException, JAXBException {
 
-		System.out.println("fetching file == " + pdlDescriptionUrl);
 
 		BufferedReader bufferedReader = new BufferedReader(
 				new InputStreamReader(new URL(pdlDescriptionUrl)
@@ -309,9 +323,9 @@ public abstract class GenericOnlineCodeFrontal extends HttpServlet {
 						if (isActivated && !isValid) {
 							ErrorDetail currentError = new ErrorDetail(
 									paramInGroup,
-									"the following condition is not verified in the"
+									"the following condition is not verified in the "
 											+ currentHandler.getGroupName()
-											+ "group: " + comment);
+											+ " group: " + comment);
 							this.errorList.add(currentError);
 						}
 					}

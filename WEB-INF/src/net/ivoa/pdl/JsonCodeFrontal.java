@@ -56,10 +56,12 @@ public class JsonCodeFrontal extends GenericOnlineCodeFrontal {
 
 			String jobManagementURL = GlobalTechConfigBusiness.getInstance()
 					.getGWTContainer()
-					+ "userId="
+					+ "?userId="
 					+ this.userId
 					+ "&mail="
-					+ this.userMail;
+					+ this.userMail
+					+"&gridId="
+					+ this.gridID;
 
 			JSONArray results = new JSONArray();
 			List<IOFile> outputFileList = OutputsBusiness.getInstance()

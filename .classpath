@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="/Users/zwolf/Work/tomcat/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="/Users/zwolf/Work/tomcat/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="/Users/zwolf/Work/JavaDev/OnlineCodeLibs/libs/PDL-core.jar"/>
+	<classpathentry kind="lib" path="/Users/zwolf/Work/JavaDev/OnlineCodeLibs/libs/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/zwolf/Work/JavaDev/OnlineCodeLibs/libs/oc-commons.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

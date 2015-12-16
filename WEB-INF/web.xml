@@ -14,7 +14,7 @@
 		<servlet-name>OnlineCodeFrontal</servlet-name>
 		<url-pattern>/OnlineCode</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>TavernaCodeFrontal</servlet-name>
 		<servlet-class>net.ivoa.pdl.TavernaCodeFrontal</servlet-class>
@@ -24,7 +24,7 @@
 		<servlet-name>TavernaCodeFrontal</servlet-name>
 		<url-pattern>/TavernaCodeFrontal</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>JsonCodeFrontal</servlet-name>
 		<servlet-class>net.ivoa.pdl.JsonCodeFrontal</servlet-class>
@@ -34,7 +34,7 @@
 		<servlet-name>JsonCodeFrontal</servlet-name>
 		<url-pattern>/JsonCodeFrontal</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>getJobInfo</servlet-name>
 		<servlet-class>net.ivoa.pdl.getJobInfo</servlet-class>
@@ -44,7 +44,7 @@
 		<servlet-name>getJobInfo</servlet-name>
 		<url-pattern>/getJobInfo</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>TavernaJobInfo</servlet-name>
 		<servlet-class>net.ivoa.pdl.TavernaJobInfo</servlet-class>
@@ -54,7 +54,7 @@
 		<servlet-name>TavernaJobInfo</servlet-name>
 		<url-pattern>/TavernaJobInfo</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>JobSummary</servlet-name>
 		<servlet-class>net.ivoa.pdl.JobSummary</servlet-class>
@@ -74,5 +74,16 @@
 		<servlet-name>StopJob</servlet-name>
 		<url-pattern>/StopJob</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>getResultsByGrid</servlet-name>
+		<servlet-class>net.ivoa.pdl.getResultsByGrid</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>getResultsByGrid</servlet-name>
+		<url-pattern>/getResultsByGrid</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>
